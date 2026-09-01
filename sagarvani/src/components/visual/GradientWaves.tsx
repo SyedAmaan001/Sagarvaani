@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -48,16 +48,16 @@ const DETAIL_STEPS: Record<GradientWavesDetail, number> = {
   high: 110,
 };
 
-// ─── GLSL ─────────────────────────────────────────────────────────────────────
+// ─── GLSL 1.00 (Universal WebGL1 + WebGL2) ───────────────────────────────────
 
-const VERT_SRC = `#version 300 es
-in vec2 position;
+const VERT_SRC = `
+attribute vec2 position;
 void main() {
   gl_Position = vec4(position, 0.0, 1.0);
 }
 `;
 
-const FRAG_SRC = `#version 300 es
+const FRAG_SRC = `
 precision highp float;
 
 uniform float iTime;
@@ -83,8 +83,6 @@ uniform int   uEnableMouse;
 uniform vec3  uHorizonColor;
 uniform vec3  uWaveColor;
 uniform vec3  uCrestColor;
-
-out vec4 fragColor;
 
 #define MAX_DIST 20000.0
 #define EPS 0.1
@@ -180,7 +178,7 @@ void main() {
     alpha += g * uGrainIntensity;
   }
 
-  fragColor = vec4(col, clamp(alpha, 0.0, 1.0));
+  gl_FragColor = vec4(clamp(col, 0.0, 1.0), clamp(alpha, 0.0, 1.0));
 }
 `;
 
@@ -215,37 +213,51 @@ export function GradientWaves({
   const startRef = useRef<number>(0);
   const mouseRef = useRef<[number, number]>([0.5, 0.5]);
   const targetMouseRef = useRef<[number, number]>([0.5, 0.5]);
-  const glRef = useRef<WebGL2RenderingContext | null>(null);
+  const glRef = useRef<WebGLRenderingContext | null>(null);
   const progRef = useRef<WebGLProgram | null>(null);
   const isVisibleRef = useRef(false);
   const isPageVisibleRef = useRef(true);
+  const [webglFailed, setWebGLFailed] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const wrapper = wrapperRef.current;
-    if (!canvas || !wrapper) return;
+    if (!canvas || !wrapper || webglFailed) return;
 
-    // WebGL2 context
-    let gl: WebGL2RenderingContext | null = null;
+    // WebGL context — supports both WebGL2 and WebGL1 fallback
+    let gl: WebGLRenderingContext | null = null;
     try {
-      gl = canvas.getContext("webgl2", {
+      gl = (canvas.getContext("webgl2", {
         alpha: true,
         premultipliedAlpha: true,
         antialias: false,
-      }) as WebGL2RenderingContext | null;
+      }) ||
+        canvas.getContext("webgl", {
+          alpha: true,
+          premultipliedAlpha: true,
+          antialias: false,
+        })) as WebGLRenderingContext | null;
     } catch {
+      setWebGLFailed(true);
       return;
     }
-    if (!gl) return;
+    if (!gl) {
+      setWebGLFailed(true);
+      return;
+    }
     glRef.current = gl;
 
     // Compile shaders
     function compileShader(type: number, src: string): WebGLShader | null {
-      const s = gl!.createShader(type)!;
+      const s = gl!.createShader(type);
+      if (!s) return null;
       gl!.shaderSource(s, src);
       gl!.compileShader(s);
       if (!gl!.getShaderParameter(s, gl!.COMPILE_STATUS)) {
-        console.error("GradientWaves shader:", gl!.getShaderInfoLog(s));
+        const log = gl!.getShaderInfoLog(s);
+        if (log) {
+          console.warn("GradientWaves shader warning:", log);
+        }
         return null;
       }
       return s;
@@ -253,14 +265,21 @@ export function GradientWaves({
 
     const vert = compileShader(gl.VERTEX_SHADER, VERT_SRC);
     const frag = compileShader(gl.FRAGMENT_SHADER, FRAG_SRC);
-    if (!vert || !frag) return;
+    if (!vert || !frag) {
+      setWebGLFailed(true);
+      return;
+    }
 
-    const prog = gl.createProgram()!;
+    const prog = gl.createProgram();
+    if (!prog) {
+      setWebGLFailed(true);
+      return;
+    }
     gl.attachShader(prog, vert);
     gl.attachShader(prog, frag);
     gl.linkProgram(prog);
     if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
-      console.error("GradientWaves link:", gl.getProgramInfoLog(prog));
+      setWebGLFailed(true);
       return;
     }
     progRef.current = prog;
@@ -396,7 +415,7 @@ export function GradientWaves({
     speed, amplitude, waveScale, waveRatio,
     swell, turbulence, tilt, zoom, height, fogDepth, detail,
     brightness, opacity, mouseInteraction, parallaxStrength,
-    grain, grainIntensity,
+    grain, grainIntensity, webglFailed
   ]);
 
   return (
@@ -404,11 +423,20 @@ export function GradientWaves({
       ref={wrapperRef}
       className={cn("relative w-full overflow-hidden", className)}
     >
-      <canvas
-        ref={canvasRef}
-        aria-hidden
-        className="pointer-events-none absolute inset-0 h-full w-full"
-      />
+      {!webglFailed ? (
+        <canvas
+          ref={canvasRef}
+          aria-hidden
+          className="pointer-events-none absolute inset-0 h-full w-full"
+        />
+      ) : (
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `radial-gradient(ellipse at center, ${waveColor}33 0%, ${horizonColor} 80%)`,
+          }}
+        />
+      )}
     </div>
   );
 }
