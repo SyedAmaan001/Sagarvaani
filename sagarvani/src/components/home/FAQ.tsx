@@ -42,7 +42,7 @@ export function FAQ() {
           <h2 className="font-heading font-bold text-4xl md:text-5xl text-foreground">Frequently asked questions</h2>
         </div>
 
-        <Accordion type="single" collapsible className="w-full space-y-4">
+        <Accordion className="w-full space-y-4">
           {faqs.map((faq, idx) => (
             <AccordionItem key={idx} value={`item-${idx}`} className="bg-background border border-border rounded-lg px-6 data-[state=open]:border-primary/50 transition-colors">
               <AccordionTrigger className="text-lg font-heading font-semibold hover:no-underline hover:text-primary py-6 text-left">
