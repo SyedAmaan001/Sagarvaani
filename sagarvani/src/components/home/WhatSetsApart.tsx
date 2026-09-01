@@ -1,49 +1,55 @@
 "use client";
-
 import { motion } from "framer-motion";
-import { BrainCircuit, RotateCcw, ShieldCheck } from "lucide-react";
+import { Network, RefreshCw, FileCheck } from "lucide-react";
+
+const features = [
+  {
+    title: "Multi-Agent Intelligence",
+    icon: Network,
+    desc: "Fuses ocean, weather, GIS, and risk data through specialized agents working in concert.",
+  },
+  {
+    title: "Re-planning on Contradictions",
+    icon: RefreshCw,
+    desc: "Validates outputs and triggers re-analysis the moment sources disagree.",
+  },
+  {
+    title: "Explainable Recommendations",
+    icon: FileCheck,
+    desc: "Every answer ships with the evidence behind it — never a black box.",
+  },
+];
 
 export function WhatSetsApart() {
-  const features = [
-    {
-      title: "Multi-Agent Intelligence",
-      description: "Fuses ocean, weather, GIS, and risk data through specialized agents working in concert.",
-      icon: <BrainCircuit className="w-8 h-8 text-primary" />,
-    },
-    {
-      title: "Re-planning on Contradictions",
-      description: "Validates outputs and triggers re-analysis instantly when data sources disagree.",
-      icon: <RotateCcw className="w-8 h-8 text-primary" />,
-    },
-    {
-      title: "Explainable Recommendations",
-      description: "Every answer ships with its evidence. You never have to trust a black box.",
-      icon: <ShieldCheck className="w-8 h-8 text-primary" />,
-    },
-  ];
-
   return (
-    <section id="product" className="py-24 md:py-32 px-6 lg:px-12 bg-background">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-16">
-          <span className="text-sm font-semibold tracking-wider text-muted-foreground uppercase">Why Sagarvani</span>
-        </div>
+    <section className="py-24 md:py-32 border-b border-border">
+      <div className="max-w-6xl mx-auto px-6 lg:px-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <span className="text-primary text-sm font-semibold tracking-wide uppercase">Why Sagarvani</span>
+          <h2 className="font-heading font-bold text-3xl md:text-5xl text-foreground mt-3">
+            What sets Sagarvani apart.
+          </h2>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {features.map((feature, idx) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          {features.map((f, i) => (
             <motion.div
-              key={feature.title}
+              key={f.title}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-card border border-border rounded-xl p-8 hover:-translate-y-2 transition-transform duration-300"
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="text-center md:text-left"
             >
-              <div className="w-16 h-16 rounded-full bg-background border border-border flex items-center justify-center mb-8">
-                {feature.icon}
-              </div>
-              <h3 className="font-heading font-semibold text-2xl text-foreground mb-4">{feature.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+              <f.icon className="text-primary mb-4 mx-auto md:mx-0" size={30} strokeWidth={1.75} />
+              <h3 className="font-heading font-semibold text-xl text-foreground mb-2">{f.title}</h3>
+              <p className="text-text-secondary text-sm leading-relaxed">{f.desc}</p>
             </motion.div>
           ))}
         </div>
