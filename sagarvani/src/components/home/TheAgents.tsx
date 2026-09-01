@@ -3,9 +3,8 @@
 import { DepthCarousel } from "@/components/visual/DepthCarousel";
 import { BorderGlow } from "@/components/visual/BorderGlow";
 import { motion } from "framer-motion";
+import { Waves, CloudRain, Map, LineChart, ShieldAlert, Compass } from "lucide-react";
 
-// Agent data — using gradient placeholder images styled to match the Electric Tundra palette
-// Each image encodes an SVG data URI so there are zero external picsum/unsplash calls
 function agentDataUri(icon: string, label: string, bg: string, fg: string) {
   const svg = encodeURIComponent(
     `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="380" viewBox="0 0 300 380">
@@ -51,6 +50,15 @@ const AGENT_ITEMS = [
   },
 ];
 
+const agentsGrid = [
+  { name: "Marine Data Agent", icon: Waves, desc: "Currents, waves, SST, salinity, and core marine parameters." },
+  { name: "Weather Agent", icon: CloudRain, desc: "Forecasts, wind, rain, pressure, and weather alerts." },
+  { name: "GIS Agent", icon: Map, desc: "Maps, layers, coastal features, boundaries, and points of interest." },
+  { name: "Ocean Analytics Agent", icon: LineChart, desc: "Trend analysis, anomaly detection, and pattern discovery." },
+  { name: "Risk Agent", icon: ShieldAlert, desc: "Risk assessment, cyclone tracking, pollution, and navigation hazards." },
+  { name: "Spatial Reasoning Agent", icon: Compass, desc: "Spatial relations, constraints, and proximity analysis." },
+];
+
 export function TheAgents() {
   return (
     <section
@@ -67,7 +75,7 @@ export function TheAgents() {
         }}
       />
 
-      <div className="mx-auto max-w-7xl px-6 lg:px-12">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -87,16 +95,17 @@ export function TheAgents() {
           </p>
         </motion.div>
 
+        {/* 3D Depth Carousel Container wrapped in BorderGlow */}
         <BorderGlow
           colors={["#00FFFF", "#0000FF", "#60A5FA"]}
           glowColor="190 100 60"
-          backgroundColor="transparent"
+          backgroundColor="#02051C"
           borderRadius={24}
           glowRadius={60}
           glowIntensity={0.8}
-          className="rounded-3xl"
+          className="rounded-3xl border border-border p-4 mb-20"
         >
-          <div className="py-8">
+          <div className="py-6">
             <DepthCarousel
               items={AGENT_ITEMS}
               cardWidth={300}
@@ -119,6 +128,24 @@ export function TheAgents() {
             />
           </div>
         </BorderGlow>
+
+        {/* 6 Grid Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {agentsGrid.map((agent, i) => (
+            <motion.div
+              key={agent.name}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              className="p-6 rounded-xl border border-border bg-bg-elevated hover:-translate-y-1 transition-transform duration-200"
+            >
+              <agent.icon className="text-primary mb-4" size={28} strokeWidth={1.75} />
+              <h3 className="font-heading font-semibold text-lg text-foreground mb-2">{agent.name}</h3>
+              <p className="text-text-secondary text-sm leading-relaxed">{agent.desc}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
