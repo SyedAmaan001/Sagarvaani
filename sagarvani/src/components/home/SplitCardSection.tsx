@@ -2,7 +2,18 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Anchor, Navigation, LineChart, Shield, ArrowRight, Radio, Compass, Database } from "lucide-react";
+import {
+  Anchor,
+  Navigation,
+  LineChart,
+  ShieldAlert,
+  Fish,
+  Sun,
+  Flame,
+  Globe2,
+  ArrowRight,
+  CheckCircle2,
+} from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
@@ -30,16 +41,17 @@ const STAKEHOLDERS: Stakeholder[] = [
     role: "Operational Safety",
     icon: Anchor,
     badge: "Voice & Low-Bandwidth",
-    desc: "Voice-based alerts about safe fishing zones, cyclone warnings, and optimal windows — delivered in regional languages over IVR or WhatsApp.",
+    desc: "Voice-based alerts about safe fishing zones, wave height thresholds, and optimal windows — delivered in regional languages over IVR or helpline.",
     cardTitle: "Going to Sea Safely",
     cardSubtitle: "Pre-departure safety advisory & PFZ mapping",
-    cardDesc: "Consolidated go/no-go recommendation validated across ocean wave buoys, Doppler weather radar, and marine risk agents before departure.",
+    cardDesc:
+      "Consolidated go/no-go recommendation validated across ocean wave buoys, Doppler weather radar, and marine risk agents before departure.",
     bgColor: "#0B1550",
     accentColor: "#00FFFF",
     textColor: "#F4F7FF",
     stats: [
       { label: "Advisory Window", value: "36 Hours" },
-      { label: "Confidence", value: "98.4%" },
+      { label: "Confidence Score", value: "98.4%" },
     ],
     features: [
       "Potential Fishing Zone (PFZ) coordinates",
@@ -56,7 +68,8 @@ const STAKEHOLDERS: Stakeholder[] = [
     desc: "Interactive GIS console with real-time AIS tracks, weather routing, tidal currents, and multi-agent risk synthesis.",
     cardTitle: "Navigating the EEZ",
     cardSubtitle: "Real-time vessel routing & risk boundaries",
-    cardDesc: "High-resolution spatial overlays with dynamic hazard buffers, sea surface temperature gradients, and harbour clearance intelligence.",
+    cardDesc:
+      "High-resolution spatial overlays with dynamic hazard buffers, sea surface temperature gradients, and harbour clearance intelligence.",
     bgColor: "#050A30",
     accentColor: "#38BDF8",
     textColor: "#F4F7FF",
@@ -79,7 +92,8 @@ const STAKEHOLDERS: Stakeholder[] = [
     desc: "Unified exploration across INCOIS, IMD, ISRO Bhuvan, and MOSDAC with anomaly detection and verifiable citation trails.",
     cardTitle: "Ocean Data Synthesis",
     cardSubtitle: "Multi-satellite correlation & anomaly discovery",
-    cardDesc: "Historical trend analysis, salinity & temperature anomaly clustering, and exportable research-grade citations for marine policy.",
+    cardDesc:
+      "Historical trend analysis, salinity & temperature anomaly clustering, and exportable research-grade citations for marine policy.",
     bgColor: "#02051C",
     accentColor: "#A78BFA",
     textColor: "#F4F7FF",
@@ -93,6 +107,126 @@ const STAKEHOLDERS: Stakeholder[] = [
       "Exportable data reports with provenance logs",
     ],
   },
+  {
+    id: "disaster",
+    title: "Disaster Management & Safety",
+    role: "Early Hazard Warning",
+    icon: ShieldAlert,
+    badge: "Surge & Cyclone Context",
+    desc: "Harmonized emergency picture combining IMD cyclone paths, INCOIS coastal surge models, and vulnerable coastal zone mappings.",
+    cardTitle: "Coastal Hazard Mitigation",
+    cardSubtitle: "Multi-agency emergency spatial awareness",
+    cardDesc:
+      "Rapid decision support fusing conflicting weather advisories into one transparent operational risk picture for relief coordinators.",
+    bgColor: "#091238",
+    accentColor: "#FFB020",
+    textColor: "#F4F7FF",
+    stats: [
+      { label: "Harmonized Feeds", value: "5 Agencies" },
+      { label: "Conflict Alerts", value: "Immediate" },
+    ],
+    features: [
+      "Cross-agency contradiction detection",
+      "Coastal inundation & high-swell alerts",
+      "Evacuation corridor spatial reasoning",
+    ],
+  },
+  {
+    id: "aquaculture",
+    title: "Aquaculture & Marine Farming",
+    role: "Environmental Monitoring",
+    icon: Fish,
+    badge: "Water & Bio-Signals",
+    desc: "Connect farm decisions to localized water quality, temperature anomalies, and algal bloom risk indicators.",
+    cardTitle: "Aquaculture Decision Support",
+    cardSubtitle: "Water temperature & environmental stability",
+    cardDesc:
+      "Real-time monitoring of sea-surface temperature changes and coastal run-off patterns to protect marine hatchery yields.",
+    bgColor: "#061A40",
+    accentColor: "#22E29A",
+    textColor: "#F4F7FF",
+    stats: [
+      { label: "Temp Anomaly", value: "±0.2°C Precision" },
+      { label: "Chlorophyll Ind.", value: "Live Track" },
+    ],
+    features: [
+      "Localized thermal stress indicators",
+      "Near-shore salinity fluctuation alerts",
+      "Seasonal upwelling forecast windows",
+    ],
+  },
+  {
+    id: "tourism",
+    title: "Coastal Tourism & Recreation",
+    role: "Activity Planning",
+    icon: Sun,
+    badge: "Sea-State Safety",
+    desc: "Plan coastal recreation, ferry transits, and water-sports around verified wave, rip-current, and wind conditions.",
+    cardTitle: "Recreational Coastal Safety",
+    cardSubtitle: "Tourist vessel & coastal activity windows",
+    cardDesc:
+      "Accurate sea-state advisories preventing tourist boat accidents during sudden pre-monsoon squall developments.",
+    bgColor: "#0A174E",
+    accentColor: "#F59E0B",
+    textColor: "#F4F7FF",
+    stats: [
+      { label: "Forecast Lead", value: "48 Hours" },
+      { label: "Rip-Current Alert", value: "Zone Mapped" },
+    ],
+    features: [
+      "Safe bathing & boating window forecast",
+      "Ferry route swell & chop advisory",
+      "Beachfront weather trend summaries",
+    ],
+  },
+  {
+    id: "offshore",
+    title: "Offshore Energy & Marine Industry",
+    role: "Operational Planning",
+    icon: Flame,
+    badge: "Asset & Logistics Context",
+    desc: "High-precision ocean current, wind shear, and wave spectrum analysis for offshore rigs, maintenance barges, and subsea operations.",
+    cardTitle: "Offshore Industrial Intelligence",
+    cardSubtitle: "Platform operations & heavy lift windows",
+    cardDesc:
+      "Comprehensive hydrodynamic forecasts and sub-surface current profiles to schedule crane barge operations and crew transfers safely.",
+    bgColor: "#030A28",
+    accentColor: "#EC4899",
+    textColor: "#F4F7FF",
+    stats: [
+      { label: "Current Profiles", value: "0-50m Depth" },
+      { label: "Operational Risk", value: "Validated" },
+    ],
+    features: [
+      "Significant wave height & peak period alerts",
+      "Subsea current speed & direction modeling",
+      "Helideck turbulence & visibility forecasts",
+    ],
+  },
+  {
+    id: "policy",
+    title: "Marine Policy & Conservation",
+    role: "Evidence Synthesis",
+    icon: Globe2,
+    badge: "Ecosystem Indicators",
+    desc: "Synthesize multi-decadal satellite records, marine protected area boundaries, and ecological indicators for evidence-based governance.",
+    cardTitle: "Marine Spatial Planning",
+    cardSubtitle: "Evidence-based ocean governance",
+    cardDesc:
+      "Holistic environmental layers and maritime traffic density mappings supporting sustainable coastal zone management.",
+    bgColor: "#02051C",
+    accentColor: "#6366F1",
+    textColor: "#F4F7FF",
+    stats: [
+      { label: "Spatial Archive", value: "ISRO + INCOIS" },
+      { label: "Policy Provenance", value: "Export Ready" },
+    ],
+    features: [
+      "Marine Protected Area (MPA) buffer monitoring",
+      "Long-term SST & sea-level trend indicators",
+      "Multi-disciplinary geospatial synthesis",
+    ],
+  },
 ];
 
 export function SplitCardSection() {
@@ -100,7 +234,7 @@ export function SplitCardSection() {
   const active = STAKEHOLDERS[activeTab];
 
   return (
-    <section className="relative overflow-hidden border-b border-border bg-bg-primary py-24 md:py-32">
+    <section id="who-is-it-for" className="relative overflow-hidden border-b border-border bg-bg-primary py-24 md:py-32">
       {/* Background ambient lighting */}
       <div
         aria-hidden
@@ -121,20 +255,20 @@ export function SplitCardSection() {
           className="mb-16 text-center"
         >
           <span className="text-sm font-semibold uppercase tracking-wider text-primary">
-            Who Is It For
+            WHO IS IT FOR
           </span>
           <h2 className="mt-3 font-heading text-3xl font-bold text-foreground md:text-5xl">
             Built for every ocean stakeholder.
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-text-secondary">
-            Tailored decision intelligence whether you are steering a fishing trawler, managing a commercial fleet, or analyzing climate indicators.
+            Tailored decision intelligence whether you are steering a fishing trawler, managing a commercial fleet, responding to coastal hazards, or researching marine systems.
           </p>
         </motion.div>
 
         {/* 2-Column Responsive Layout */}
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
-          {/* Left Column: Stakeholder Selector & Context */}
-          <div className="space-y-4 lg:col-span-5">
+        <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-14">
+          {/* Left Column: Stakeholder Selector & Context (Scrollable list with custom scrollbar) */}
+          <div className="space-y-3 max-h-[580px] overflow-y-auto pr-2 lg:col-span-5 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
             {STAKEHOLDERS.map((s, index) => {
               const Icon = s.icon;
               const isSelected = activeTab === index;
@@ -142,19 +276,19 @@ export function SplitCardSection() {
                 <motion.div
                   key={s.id}
                   onClick={() => setActiveTab(index)}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -15 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className={`group relative cursor-pointer rounded-xl border p-5 transition-all duration-200 ${
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  className={`group relative cursor-pointer rounded-xl border p-4 transition-all duration-200 ${
                     isSelected
-                      ? "border-primary bg-bg-elevated shadow-[0_0_30px_rgba(0,255,255,0.08)]"
+                      ? "border-primary bg-bg-elevated shadow-[0_0_24px_rgba(0,255,255,0.08)]"
                       : "border-border bg-bg-elevated/40 hover:border-border/80 hover:bg-bg-elevated/70"
                   }`}
                 >
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-3.5">
                     <div
-                      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border transition-colors ${
+                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border transition-colors ${
                         isSelected
                           ? "border-primary/50 bg-primary/10 text-primary"
                           : "border-border bg-bg-primary text-text-secondary group-hover:text-primary"
@@ -162,16 +296,16 @@ export function SplitCardSection() {
                     >
                       <Icon className="h-5 w-5" />
                     </div>
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between">
-                        <h3 className="font-heading text-base font-semibold text-foreground">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-2">
+                        <h3 className="font-heading text-sm font-semibold text-foreground truncate">
                           {s.title}
                         </h3>
-                        <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">
+                        <span className="shrink-0 rounded-full bg-primary/10 px-2 py-0.5 text-[9px] font-semibold text-primary">
                           {s.badge}
                         </span>
                       </div>
-                      <p className="mt-1.5 text-xs leading-relaxed text-text-secondary">
+                      <p className="mt-1 text-xs leading-relaxed text-text-secondary line-clamp-2">
                         {s.desc}
                       </p>
                     </div>
@@ -181,37 +315,36 @@ export function SplitCardSection() {
             })}
           </div>
 
-          {/* Right Column: 3D Layered Split Cards Showcase */}
-          <div className="relative flex min-h-[480px] items-center justify-center lg:col-span-7">
-            {/* 3D Stack / Active Card Display */}
-            <div className="relative w-full max-w-lg">
+          {/* Right Column: 3D Layered Split Card Showcase */}
+          <div className="relative flex items-center justify-center lg:col-span-7 lg:sticky lg:top-28">
+            <div className="relative w-full max-w-xl">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active.id}
-                  initial={{ opacity: 0, y: 20, scale: 0.96 }}
+                  initial={{ opacity: 0, y: 15, scale: 0.97 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -20, scale: 0.96 }}
-                  transition={{ duration: 0.35, ease: "easeOut" }}
+                  exit={{ opacity: 0, y: -15, scale: 0.97 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
                   className="overflow-hidden rounded-2xl border border-border/80 p-7 md:p-8 shadow-2xl"
                   style={{
                     backgroundColor: active.bgColor,
-                    boxShadow: `0 20px 50px -10px ${active.accentColor}18`,
+                    boxShadow: `0 20px 50px -10px ${active.accentColor}18, 0 0 0 1px var(--color-border)`,
                   }}
                 >
                   {/* Top Bar with Icon & Role */}
                   <div className="flex items-center justify-between border-b border-white/10 pb-4">
                     <div className="flex items-center gap-3">
                       <div
-                        className="flex h-10 w-10 items-center justify-center rounded-lg"
+                        className="flex h-11 w-11 items-center justify-center rounded-xl"
                         style={{ backgroundColor: `${active.accentColor}20`, color: active.accentColor }}
                       >
-                        <active.icon className="h-5 w-5" />
+                        <active.icon className="h-6 w-6" />
                       </div>
                       <div>
                         <span className="text-[11px] font-semibold uppercase tracking-wider text-white/60">
                           {active.role}
                         </span>
-                        <h4 className="font-heading text-lg font-bold text-white">
+                        <h4 className="font-heading text-xl font-bold text-white">
                           {active.cardTitle}
                         </h4>
                       </div>
@@ -226,7 +359,7 @@ export function SplitCardSection() {
 
                   {/* Main Description */}
                   <div className="my-5">
-                    <p className="text-sm font-medium text-white/90">
+                    <p className="text-sm font-semibold text-white/90">
                       {active.cardSubtitle}
                     </p>
                     <p className="mt-2 text-xs leading-relaxed text-white/70">
@@ -235,30 +368,27 @@ export function SplitCardSection() {
                   </div>
 
                   {/* Features List */}
-                  <div className="space-y-2 rounded-xl border border-white/10 bg-black/20 p-4">
-                    <span className="text-[10px] font-semibold uppercase tracking-wider text-white/50">
+                  <div className="space-y-2 rounded-xl border border-white/10 bg-black/25 p-4">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-white/50 block mb-1">
                       Validated Capabilities
                     </span>
                     {active.features.map((feat, i) => (
-                      <div key={i} className="flex items-center gap-2 text-xs text-white/85">
-                        <span
-                          className="h-1.5 w-1.5 rounded-full"
-                          style={{ backgroundColor: active.accentColor }}
-                        />
+                      <div key={i} className="flex items-center gap-2.5 text-xs text-white/85">
+                        <CheckCircle2 className="size-3.5 shrink-0" style={{ color: active.accentColor }} />
                         <span>{feat}</span>
                       </div>
                     ))}
                   </div>
 
                   {/* Bottom Stats & CTA */}
-                  <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4">
+                  <div className="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-4">
                     <div className="flex gap-6">
                       {active.stats.map((st) => (
                         <div key={st.label}>
                           <span className="block font-heading text-sm font-bold" style={{ color: active.accentColor }}>
                             {st.value}
                           </span>
-                          <span className="text-[10px] uppercase text-white/50">{st.label}</span>
+                          <span className="text-[10px] uppercase tracking-wider text-white/50">{st.label}</span>
                         </div>
                       ))}
                     </div>
@@ -273,7 +403,7 @@ export function SplitCardSection() {
                       }}
                     >
                       <Link href="/dashboard" className="flex items-center gap-1.5 text-xs">
-                        Open in Console <ArrowRight className="h-3 w-3" />
+                        Open in Console <ArrowRight className="h-3.5 w-3.5" />
                       </Link>
                     </Button>
                   </div>
