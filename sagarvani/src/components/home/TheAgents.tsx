@@ -3,6 +3,7 @@
 import React, { useRef, useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { Waves, CloudRain, Map, LineChart, ShieldAlert, Compass, ChevronLeft, ChevronRight } from "lucide-react";
+import { DepthCarousel } from "@/components/visual/DepthCarousel";
 import { BorderGlow } from "@/components/visual/BorderGlow";
 
 const AGENT_DATA = [
@@ -155,7 +156,7 @@ export function TheAgents() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12 relative z-10 w-full flex-1 flex flex-col justify-center min-h-0">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            {/* Left Side: 3D Depth Card Display */}
+            {/* Left Side: 3D Depth Carousel Container */}
             <div className="lg:col-span-7 flex justify-center items-center relative">
               <BorderGlow
                 colors={[activeAgent.accent, "#0000FF", "#60A5FA"]}
@@ -164,48 +165,33 @@ export function TheAgents() {
                 borderRadius={24}
                 glowRadius={50}
                 glowIntensity={0.6}
-                className="w-full max-w-md lg:max-w-lg aspect-[4/3] rounded-2xl border border-border p-3 shadow-2xl relative"
+                className="w-full rounded-2xl border border-border p-3 shadow-2xl relative"
               >
-                <div className="relative w-full h-full rounded-xl overflow-hidden bg-bg-elevated">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activeAgent.id}
-                      initial={{ opacity: 0, scale: 0.95, rotateY: 10 }}
-                      animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-                      exit={{ opacity: 0, scale: 1.05, rotateY: -10 }}
-                      transition={{ duration: 0.4, ease: "easeOut" }}
-                      className="absolute inset-0"
-                    >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={activeAgent.image}
-                        alt={activeAgent.name}
-                        className="w-full h-full object-cover"
-                      />
-
-                      {/* Image Overlay Gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-bg-sunken/90 via-transparent to-transparent" />
-
-                      {/* Floating Badge on Image */}
-                      <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-                        <div className="flex items-center gap-2 bg-bg-sunken/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-border">
-                          <activeAgent.icon className="size-4 text-primary" />
-                          <span className="text-xs font-mono text-foreground font-semibold">
-                            {activeAgent.name}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-1.5 bg-bg-sunken/80 backdrop-blur-md px-2.5 py-1 rounded-full border border-border">
-                          <span
-                            className="size-2 rounded-full animate-pulse"
-                            style={{ backgroundColor: activeAgent.accent }}
-                          />
-                          <span className="text-[10px] text-text-secondary font-mono">
-                            {activeAgent.status}
-                          </span>
-                        </div>
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
+                <div className="py-2">
+                  <DepthCarousel
+                    items={AGENT_DATA.map((a) => ({ image: a.image, alt: a.name }))}
+                    cardWidth={340}
+                    cardHeight={240}
+                    depth={180}
+                    spread={70}
+                    tilt={15}
+                    tiltDirection="right"
+                    perspective={1200}
+                    visibleCards={3}
+                    falloff={0.25}
+                    blur={4}
+                    duration={600}
+                    ease="power3.out"
+                    autoplay={false}
+                    loop={false}
+                    showControls={false}
+                    showIndicators={false}
+                    onChange={(idx) => {
+                      if (idx !== activeIndex) {
+                        goToAgent(idx);
+                      }
+                    }}
+                  />
                 </div>
               </BorderGlow>
             </div>
