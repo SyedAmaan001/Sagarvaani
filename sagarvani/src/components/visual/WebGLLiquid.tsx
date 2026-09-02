@@ -18,9 +18,9 @@ interface WebGLFallbackProps {
 }
 
 function WebGLFallback({
-  colorDeep = "#04050b",
-  colorMid = "#134d93",
-  colorHighlight = "#8cecff",
+  colorDeep = "#02051C",
+  colorMid = "#050A30",
+  colorHighlight = "#00FFFF",
   className,
 }: WebGLFallbackProps) {
   return (
@@ -186,9 +186,9 @@ export function WebGLLiquid({
   title,
   subtitle,
   description,
-  colorDeep = "#04050b",
-  colorMid = "#134d93",
-  colorHighlight = "#8cecff",
+  colorDeep = "#02051C",
+  colorMid = "#050A30",
+  colorHighlight = "#00FFFF",
   speed = 1,
   flowStrength = 1,
   grain = 0.05,
@@ -356,7 +356,7 @@ export function WebGLLiquid({
     <div
       ref={wrapperRef}
       className={cn(
-        "relative flex min-h-screen w-full overflow-hidden bg-[#04050b] text-white",
+        "relative flex min-h-screen w-full overflow-hidden bg-bg-sunken text-foreground",
         className
       )}
       {...rest}
@@ -395,8 +395,8 @@ export function WebGLLiquid({
       />
 
       {/* Foreground content */}
-      <div className="relative z-10 mx-auto flex w-full max-w-[1240px] flex-col justify-center px-6 py-32 lg:px-12">
-        <div className="max-w-[760px]">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center justify-center px-6 py-32 lg:px-12">
+        <div className="w-full max-w-[760px] lg:max-w-none">
           {subtitle && (
             <p
               className="mb-4 text-sm font-semibold uppercase tracking-widest"

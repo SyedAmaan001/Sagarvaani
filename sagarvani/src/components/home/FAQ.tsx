@@ -11,44 +11,68 @@ export function FAQ() {
   const faqs = [
     {
       q: "What is Sagarvani?",
-      a: "Sagarvani is a conversational marine decision-intelligence platform. It uses a multi-agent system (ORCA) to fuse ocean, weather, GIS, and risk data, providing explainable recommendations for marine operators and fishermen."
+      a: "Sagarvani is a conversational marine decision-intelligence platform that combines ocean, weather, geospatial, and risk information through ORCA's collaborative agent architecture."
     },
     {
-      q: "How does ORCA validate its answers?",
-      a: "ORCA runs a Reasoning/Validation agent that cross-checks the outputs of specialized agents. If there's a conflict between sources (e.g., weather data vs. marine sensors), it triggers a visible re-checking phase and always cites its evidence."
+      q: "What is ORCA?",
+      a: "ORCA is Sagarvani's orchestration and reasoning architecture. It coordinates specialist marine agents, combines their outputs, checks evidence for contradictions, and supports a validated, explainable response."
     },
     {
-      q: "What data sources power it?",
-      a: "The system integrates live and historical data from authoritative sources including INCOIS, IMD, ISRO Bhuvan, Bhoonidhi, and MOSDAC."
+      q: "What data sources does Sagarvani use?",
+      a: "The project design references INCOIS, IMD, ISRO Bhuvan/NRSC, Bhoonidhi, MOSDAC, BHASHINI and Sarvam AI, alongside supporting geospatial, weather and technology infrastructure."
     },
     {
-      q: "How do I access it without a smartphone?",
-      a: "Sagarvani is designed with multiple access paths. While the primary interface is a web dashboard, it supports Helpline/IVR interactions and low-bandwidth portals (in future phases) for users with limited connectivity."
+      q: "Who is Sagarvani for?",
+      a: "The primary focus is fishermen/coastal crews, maritime operators, researchers and disaster-management/coastal-safety users. The broader stakeholder model also includes aquaculture, tourism, offshore energy and policy/conservation."
     },
     {
-      q: "Is this available now or a prototype?",
-      a: "This is currently a prototype developed for the Smart India Hackathon 2026 by Team Helios Luna (DSU)."
+      q: "How does it work without a smartphone?",
+      a: "The product is designed around multiple access paths, including a helpline and low-bandwidth communication portal. Full production IVR integration is planned in subsequent phases beyond the current web MVP."
     },
     {
-      q: "How is this different from checking weather apps separately?",
-      a: "Instead of you manually looking at wind, waves, and cyclone warnings across different apps, Sagarvani understands your natural language intent, fetches all relevant data simultaneously, resolves any conflicts, and gives you a single, evidence-backed decision."
+      q: "Does Sagarvani support voice?",
+      a: "Yes. Voice input is included in the MVP interface, with the architecture prepared for BHASHINI/Sarvam-based multilingual speech services."
+    },
+    {
+      q: "How does Sagarvani handle conflicting data?",
+      a: "Conflicting or low-confidence outputs trigger a visible re-check/re-planning state. The system exposes the validation result rather than silently hiding uncertainty or picking a single source arbitrarily."
+    },
+    {
+      q: "Does Sagarvani replace official authorities?",
+      a: "No. It is a decision-support platform designed to synthesize evidence and explain recommendations. Official warnings and authorities (such as IMD cyclone bulletins and INCOIS high-wave advisories) remain essential sources of operational truth."
+    },
+    {
+      q: "What problem statement is it built for?",
+      a: "Smart India Hackathon 2026, SIH26176 — ORCA: Marine Ecosystem Reasoning with Collaborative Agents, under the Disaster Management theme / Software category, developed by Team Helios Luna (Dayananda Sagar University)."
     }
   ];
 
   return (
-    <section className="py-24 md:py-32 px-6 lg:px-12 bg-card border-y border-border">
-      <div className="max-w-3xl mx-auto">
+    <section id="faq" className="py-24 md:py-32 px-6 lg:px-12 bg-bg-sunken border-b border-border">
+      <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="font-heading font-bold text-4xl md:text-5xl text-foreground">Frequently asked questions</h2>
+          <span className="text-primary text-xs font-heading font-bold uppercase tracking-widest bg-primary/10 border border-primary/20 px-3.5 py-1 rounded-full">
+            Questions & Answers
+          </span>
+          <h2 className="font-heading font-bold text-3xl md:text-5xl text-foreground mt-4">
+            Frequently Asked Questions
+          </h2>
+          <p className="mt-3 text-text-secondary text-base">
+            Everything you need to know about Sagarvani and the ORCA architecture.
+          </p>
         </div>
 
         <Accordion className="w-full space-y-4">
           {faqs.map((faq, idx) => (
-            <AccordionItem key={idx} value={`item-${idx}`} className="bg-background border border-border rounded-lg px-6 data-[state=open]:border-primary/50 transition-colors">
-              <AccordionTrigger className="text-lg font-heading font-semibold hover:no-underline hover:text-primary py-6 text-left">
+            <AccordionItem 
+              key={idx} 
+              value={`item-${idx}`} 
+              className="bg-bg-elevated/70 border border-border rounded-xl px-6 data-[state=open]:border-primary/50 transition-colors shadow-sm"
+            >
+              <AccordionTrigger className="text-base md:text-lg font-heading font-semibold hover:no-underline hover:text-primary py-5 text-left text-foreground">
                 {faq.q}
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground text-base leading-relaxed pb-6">
+              <AccordionContent className="text-text-secondary text-sm md:text-base leading-relaxed pb-6">
                 {faq.a}
               </AccordionContent>
             </AccordionItem>

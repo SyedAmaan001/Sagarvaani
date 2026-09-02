@@ -38,44 +38,44 @@ const STAKEHOLDERS: Stakeholder[] = [
   {
     id: "fishermen",
     title: "Fishermen & Coastal Crews",
-    role: "Operational Safety",
+    role: "Operational Safety & PFZ",
     icon: Anchor,
     badge: "Voice & Low-Bandwidth",
-    desc: "Voice-based alerts about safe fishing zones, wave height thresholds, and optimal windows — delivered in regional languages over IVR or helpline.",
-    cardTitle: "Going to Sea Safely",
-    cardSubtitle: "Pre-departure safety advisory & PFZ mapping",
+    desc: "Voice-based advisories about safe fishing windows, wave height thresholds, and Potential Fishing Zones delivered in regional languages over IVR or helpline.",
+    cardTitle: "Pre-Departure Safety & PFZ Mapping",
+    cardSubtitle: "Natural language advisories for artisanal & mechanized crews",
     cardDesc:
-      "Consolidated go/no-go recommendation validated across ocean wave buoys, Doppler weather radar, and marine risk agents before departure.",
+      "Consolidated trip guidance validated across INCOIS wave buoys, IMD Doppler weather radar, and vessel risk thresholds before departure.",
     bgColor: "#0B1550",
     accentColor: "#00FFFF",
     textColor: "#F4F7FF",
     stats: [
-      { label: "Advisory Window", value: "36 Hours" },
-      { label: "Confidence Score", value: "98.4%" },
+      { label: "Primary Feeds", value: "INCOIS + IMD" },
+      { label: "Access Paths", value: "Voice / Helpline / Web" },
     ],
     features: [
-      "Potential Fishing Zone (PFZ) coordinates",
-      "Wave height & squall hazard thresholds",
-      "Vernacular audio alerts (Tamil, Kannada, Hindi)",
+      "Potential Fishing Zone (PFZ) coordinate mapping",
+      "Wave height & localized squall hazard thresholds",
+      "Vernacular audio alerts (Kannada, Tamil, Hindi, Telugu)",
     ],
   },
   {
     id: "operators",
     title: "Marine & Port Operators",
-    role: "Fleet Routing",
+    role: "Fleet Routing & Operations",
     icon: Navigation,
     badge: "Live GIS Matrix",
-    desc: "Interactive GIS console with real-time AIS tracks, weather routing, tidal currents, and multi-agent risk synthesis.",
-    cardTitle: "Navigating the EEZ",
-    cardSubtitle: "Real-time vessel routing & risk boundaries",
+    desc: "Interactive GIS console with weather routing, tidal currents, bathymetric depths, and multi-agent risk synthesis.",
+    cardTitle: "Coastal Transit & Port Approach",
+    cardSubtitle: "Dynamic weather routing & spatial hazard buffers",
     cardDesc:
-      "High-resolution spatial overlays with dynamic hazard buffers, sea surface temperature gradients, and harbour clearance intelligence.",
+      "High-resolution spatial overlays with dynamic hazard zones, sea surface temperature gradients, and harbour clearance intelligence.",
     bgColor: "#050A30",
     accentColor: "#38BDF8",
     textColor: "#F4F7FF",
     stats: [
-      { label: "Update Rate", value: "Every 15m" },
-      { label: "Spatial Res", value: "1.0 km²" },
+      { label: "Data Resolution", value: "Coastal & EEZ" },
+      { label: "Key Parameters", value: "Swell + Current Vectors" },
     ],
     features: [
       "Dynamic weather-optimised route calculation",
@@ -86,20 +86,20 @@ const STAKEHOLDERS: Stakeholder[] = [
   {
     id: "researchers",
     title: "Ocean Researchers & Scientists",
-    role: "Data Exploration",
+    role: "Multi-Source Exploration",
     icon: LineChart,
-    badge: "Multi-Source Analytics",
+    badge: "Analytical Synthesis",
     desc: "Unified exploration across INCOIS, IMD, ISRO Bhuvan, and MOSDAC with anomaly detection and verifiable citation trails.",
-    cardTitle: "Ocean Data Synthesis",
-    cardSubtitle: "Multi-satellite correlation & anomaly discovery",
+    cardTitle: "Ocean Data Synthesis & Anomaly Detection",
+    cardSubtitle: "Multi-satellite correlation & spatial indicators",
     cardDesc:
-      "Historical trend analysis, salinity & temperature anomaly clustering, and exportable research-grade citations for marine policy.",
+      "Historical trend analysis, salinity & temperature anomaly clustering, and exportable research-grade citations for marine science.",
     bgColor: "#02051C",
     accentColor: "#A78BFA",
     textColor: "#F4F7FF",
     stats: [
-      { label: "Satellite Feeds", value: "8 Active" },
-      { label: "Citation Depth", value: "100% Verifiable" },
+      { label: "Integrated Feeds", value: "MOSDAC + Bhoonidhi" },
+      { label: "Citation Model", value: "Verifiable Source Provenance" },
     ],
     features: [
       "Multi-modal cross-sensor contradiction checks",
@@ -110,20 +110,20 @@ const STAKEHOLDERS: Stakeholder[] = [
   {
     id: "disaster",
     title: "Disaster Management & Safety",
-    role: "Early Hazard Warning",
+    role: "Hazard Early Warning",
     icon: ShieldAlert,
     badge: "Surge & Cyclone Context",
     desc: "Harmonized emergency picture combining IMD cyclone paths, INCOIS coastal surge models, and vulnerable coastal zone mappings.",
-    cardTitle: "Coastal Hazard Mitigation",
+    cardTitle: "Coastal Hazard Mitigation & Surge Context",
     cardSubtitle: "Multi-agency emergency spatial awareness",
     cardDesc:
-      "Rapid decision support fusing conflicting weather advisories into one transparent operational risk picture for relief coordinators.",
+      "Rapid decision support fusing conflicting weather advisories into one transparent operational risk picture for coastal relief coordinators.",
     bgColor: "#091238",
     accentColor: "#FFB020",
     textColor: "#F4F7FF",
     stats: [
-      { label: "Harmonized Feeds", value: "5 Agencies" },
-      { label: "Conflict Alerts", value: "Immediate" },
+      { label: "Hazard Focus", value: "Cyclones & High Waves" },
+      { label: "Conflict State", value: "Visible Re-Checking" },
     ],
     features: [
       "Cross-agency contradiction detection",
@@ -138,16 +138,16 @@ const STAKEHOLDERS: Stakeholder[] = [
     icon: Fish,
     badge: "Water & Bio-Signals",
     desc: "Connect farm decisions to localized water quality, temperature anomalies, and algal bloom risk indicators.",
-    cardTitle: "Aquaculture Decision Support",
+    cardTitle: "Hatchery & Coastal Farm Protection",
     cardSubtitle: "Water temperature & environmental stability",
     cardDesc:
-      "Real-time monitoring of sea-surface temperature changes and coastal run-off patterns to protect marine hatchery yields.",
+      "Real-time monitoring of sea-surface temperature changes and coastal run-off patterns to protect marine hatchery operations.",
     bgColor: "#061A40",
     accentColor: "#22E29A",
     textColor: "#F4F7FF",
     stats: [
-      { label: "Temp Anomaly", value: "±0.2°C Precision" },
-      { label: "Chlorophyll Ind.", value: "Live Track" },
+      { label: "Signals Tracked", value: "SST + Chlorophyll-a" },
+      { label: "Threshold Alerts", value: "Thermal Stress & Upwelling" },
     ],
     features: [
       "Localized thermal stress indicators",
@@ -158,11 +158,11 @@ const STAKEHOLDERS: Stakeholder[] = [
   {
     id: "tourism",
     title: "Coastal Tourism & Recreation",
-    role: "Activity Planning",
+    role: "Activity Window Planning",
     icon: Sun,
     badge: "Sea-State Safety",
     desc: "Plan coastal recreation, ferry transits, and water-sports around verified wave, rip-current, and wind conditions.",
-    cardTitle: "Recreational Coastal Safety",
+    cardTitle: "Recreational Coastal & Ferry Safety",
     cardSubtitle: "Tourist vessel & coastal activity windows",
     cardDesc:
       "Accurate sea-state advisories preventing tourist boat accidents during sudden pre-monsoon squall developments.",
@@ -170,8 +170,8 @@ const STAKEHOLDERS: Stakeholder[] = [
     accentColor: "#F59E0B",
     textColor: "#F4F7FF",
     stats: [
-      { label: "Forecast Lead", value: "48 Hours" },
-      { label: "Rip-Current Alert", value: "Zone Mapped" },
+      { label: "Safety Windows", value: "Hourly Temporal Forecast" },
+      { label: "Hazards Mapped", value: "Rip Currents & High Swells" },
     ],
     features: [
       "Safe bathing & boating window forecast",
@@ -182,10 +182,10 @@ const STAKEHOLDERS: Stakeholder[] = [
   {
     id: "offshore",
     title: "Offshore Energy & Marine Industry",
-    role: "Operational Planning",
+    role: "Platform Operations",
     icon: Flame,
     badge: "Asset & Logistics Context",
-    desc: "High-precision ocean current, wind shear, and wave spectrum analysis for offshore rigs, maintenance barges, and subsea operations.",
+    desc: "Ocean current, wind shear, and wave spectrum analysis for offshore platforms, maintenance barges, and subsea operations.",
     cardTitle: "Offshore Industrial Intelligence",
     cardSubtitle: "Platform operations & heavy lift windows",
     cardDesc:
@@ -194,8 +194,8 @@ const STAKEHOLDERS: Stakeholder[] = [
     accentColor: "#EC4899",
     textColor: "#F4F7FF",
     stats: [
-      { label: "Current Profiles", value: "0-50m Depth" },
-      { label: "Operational Risk", value: "Validated" },
+      { label: "Profile Depth", value: "Surface to Sub-Surface" },
+      { label: "Operational State", value: "Validated Decision Support" },
     ],
     features: [
       "Significant wave height & peak period alerts",
@@ -209,8 +209,8 @@ const STAKEHOLDERS: Stakeholder[] = [
     role: "Evidence Synthesis",
     icon: Globe2,
     badge: "Ecosystem Indicators",
-    desc: "Synthesize multi-decadal satellite records, marine protected area boundaries, and ecological indicators for evidence-based governance.",
-    cardTitle: "Marine Spatial Planning",
+    desc: "Synthesize multi-source satellite records, marine protected area boundaries, and ecological indicators for evidence-based governance.",
+    cardTitle: "Marine Spatial Planning & Protection",
     cardSubtitle: "Evidence-based ocean governance",
     cardDesc:
       "Holistic environmental layers and maritime traffic density mappings supporting sustainable coastal zone management.",
@@ -218,8 +218,8 @@ const STAKEHOLDERS: Stakeholder[] = [
     accentColor: "#6366F1",
     textColor: "#F4F7FF",
     stats: [
-      { label: "Spatial Archive", value: "ISRO + INCOIS" },
-      { label: "Policy Provenance", value: "Export Ready" },
+      { label: "Spatial Feeds", value: "ISRO + INCOIS Layers" },
+      { label: "Governance Output", value: "Structured Provenance" },
     ],
     features: [
       "Marine Protected Area (MPA) buffer monitoring",
@@ -254,21 +254,21 @@ export function SplitCardSection() {
           transition={{ duration: 0.5 }}
           className="mb-16 text-center"
         >
-          <span className="text-sm font-semibold uppercase tracking-wider text-primary">
+          <span className="text-primary text-xs font-heading font-bold uppercase tracking-widest bg-primary/10 border border-primary/20 px-3.5 py-1 rounded-full">
             WHO IS IT FOR
           </span>
-          <h2 className="mt-3 font-heading text-3xl font-bold text-foreground md:text-5xl">
+          <h2 className="mt-4 font-heading text-3xl font-bold text-foreground md:text-5xl">
             Built for every ocean stakeholder.
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-text-secondary">
+          <p className="mx-auto mt-4 max-w-2xl text-text-secondary text-base">
             Tailored decision intelligence whether you are steering a fishing trawler, managing a commercial fleet, responding to coastal hazards, or researching marine systems.
           </p>
         </motion.div>
 
         {/* 2-Column Responsive Layout */}
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-14">
-          {/* Left Column: Stakeholder Selector & Context (Scrollable list with custom scrollbar) */}
-          <div className="space-y-3 max-h-[580px] overflow-y-auto pr-2 lg:col-span-5 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
+          {/* Left Column: Stakeholder Selector */}
+          <div className="space-y-3 max-h-[600px] overflow-y-auto pr-2 lg:col-span-5 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
             {STAKEHOLDERS.map((s, index) => {
               const Icon = s.icon;
               const isSelected = activeTab === index;
@@ -279,7 +279,7 @@ export function SplitCardSection() {
                   initial={{ opacity: 0, x: -15 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  transition={{ duration: 0.3, delay: index * 0.04 }}
                   className={`group relative cursor-pointer rounded-xl border p-4 transition-all duration-200 ${
                     isSelected
                       ? "border-primary bg-bg-elevated shadow-[0_0_24px_rgba(0,255,255,0.08)]"
@@ -315,7 +315,7 @@ export function SplitCardSection() {
             })}
           </div>
 
-          {/* Right Column: 3D Layered Split Card Showcase */}
+          {/* Right Column: 3D Layered Detail Card */}
           <div className="relative flex items-center justify-center lg:col-span-7 lg:sticky lg:top-28">
             <div className="relative w-full max-w-xl">
               <AnimatePresence mode="wait">
@@ -403,7 +403,7 @@ export function SplitCardSection() {
                       }}
                     >
                       <Link href="/dashboard" className="flex items-center gap-1.5 text-xs">
-                        Open in Console <ArrowRight className="h-3.5 w-3.5" />
+                        Launch in Console <ArrowRight className="h-3.5 w-3.5" />
                       </Link>
                     </Button>
                   </div>

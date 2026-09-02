@@ -10,34 +10,34 @@ export function Impact() {
 
   const impacts = [
     {
-      persona: "Fishermen",
-      stat: "Trip-planning safety",
-      description: "Simple, local-language insights delivered over low-bandwidth connections or IVR to ensure safe fishing trips."
-    },
-    {
-      persona: "Researchers",
-      stat: "Integrated datasets",
-      description: "Deep drill-down capabilities into fused datasets from INCOIS, IMD, and ISRO for advanced scenario analysis."
-    },
-    {
-      persona: "Maritime Operators",
-      stat: "Operational intelligence",
-      description: "Map-first route planning and real-time risk assessments combining weather, sea state, and vessel data."
-    },
-    {
       persona: "Social Impact",
-      stat: "Life preservation",
-      description: "Reduces loss of life at sea through early warning systems and accessible disaster intelligence."
+      stat: "More accessible marine information",
+      description: "Local-language and voice pathways make marine intelligence available to communities that lack smartphones or stable internet connections. Low-connectivity design ensures no one is excluded."
     },
     {
       persona: "Economic Impact",
-      stat: "Fuel & resource efficiency",
-      description: "Optimizes maritime operations and fishing yields through accurate PFZ and current predictions."
+      stat: "Better-informed operational decisions",
+      description: "Reduces manual effort in interpreting fragmented information from multiple agencies. Supports marine operations and research workflows with fused, validated intelligence."
     },
     {
       persona: "Environmental Impact",
-      stat: "Ecosystem monitoring",
-      description: "Aids in tracking marine health, anomalies, and potential ecological threats via satellite integration."
+      stat: "Spatial understanding of marine conditions",
+      description: "Better access to ocean-state and environmental indicators through integrated satellite, buoy, and model data. Evidence-oriented decision support for marine stewardship."
+    },
+    {
+      persona: "Fishermen & Coastal Crews",
+      stat: "Simple, understandable marine guidance",
+      description: "Combines weather, wave, ocean, and risk context into one explainable interaction — location-aware and accessible through voice or low-bandwidth channels."
+    },
+    {
+      persona: "Marine & Port Operators",
+      stat: "Operational situational awareness",
+      description: "Spatial intelligence, alerts, environmental conditions, and evidence — brought together into a single conversational interface for route and context decisions."
+    },
+    {
+      persona: "Disaster Management & Coastal Safety",
+      stat: "Rapid situational awareness",
+      description: "Consolidated environmental signals, spatial context, and visible validation — designed for rapid response when coastal safety is at stake."
     }
   ];
 

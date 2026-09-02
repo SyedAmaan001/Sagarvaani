@@ -10,7 +10,7 @@ import random  # for mock noise while real data APIs are integrated
 def marine_data_agent(query: str) -> dict:
     """Fetches SST, wave height, currents from INCOIS (mocked for MVP)."""
     return {
-        "name": "Marine Data",
+        "name": "Marine Data Agent",
         "state": "validated",
         "data": {
             "wave_height_m": 2.5,
@@ -28,7 +28,7 @@ def marine_data_agent(query: str) -> dict:
 def weather_agent(query: str) -> dict:
     """Fetches wind, rainfall, cyclone info from IMD (mocked for MVP)."""
     return {
-        "name": "Weather",
+        "name": "Weather Agent",
         "state": "validated",
         "data": {
             "wind_speed_knots": 22,
@@ -47,7 +47,7 @@ def weather_agent(query: str) -> dict:
 def gis_agent(query: str) -> dict:
     """Handles spatial queries and PFZ zone lookups (mocked for MVP)."""
     return {
-        "name": "GIS",
+        "name": "GIS Agent",
         "state": "validated",
         "data": {
             "pfz_zone": "non-PFZ",
@@ -64,7 +64,7 @@ def gis_agent(query: str) -> dict:
 def ocean_analytics_agent(query: str) -> dict:
     """Computes historical trends and anomalies (mocked for MVP)."""
     return {
-        "name": "Ocean Analytics",
+        "name": "Ocean Analytics Agent",
         "state": "validated",
         "data": {
             "7_day_avg_wave_m": 1.9,
@@ -88,10 +88,10 @@ def risk_agent(query: str, marine_data: dict, weather_data: dict) -> dict:
 
     # Risk logic: unsafe if wave > 2m OR wind > 20kt OR active cyclone warning
     is_safe = not (wave > 2.0 or wind > 20 or cyclone)
-    conflict = wave > 2.0 and wind > 20  # Both sources agree on danger → not a conflict
+    conflict = wave > 2.0 and wind > 20
 
     return {
-        "name": "Risk",
+        "name": "Risk Agent",
         "state": "conflict" if conflict else "validated",
         "data": {
             "is_safe_for_small_vessels": is_safe,
@@ -108,7 +108,7 @@ def risk_agent(query: str, marine_data: dict, weather_data: dict) -> dict:
 def spatial_reasoning_agent(query: str, gis_data: dict) -> dict:
     """Cross-checks geospatial bounding box constraints (mocked for MVP)."""
     return {
-        "name": "Spatial Reasoning",
+        "name": "Spatial Reasoning Agent",
         "state": "validated",
         "data": {
             "bounding_box_valid": True,

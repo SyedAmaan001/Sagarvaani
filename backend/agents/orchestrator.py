@@ -24,8 +24,6 @@ from agents.specialists import (
 
 load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "..", ".env"))
 
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.2)
-
 
 def build_reasoning_prompt(query: str, agent_results: list) -> str:
     """Build a synthesis prompt from agent results."""
@@ -73,9 +71,23 @@ def orchestrate(query: str) -> dict:
         for r in agent_results
     ]
 
-    # Step 3: LLM reasoning/validation — synthesize final answer
-    reasoning_prompt = build_reasoning_prompt(query, agent_results)
-    response_text = llm.invoke(reasoning_prompt).content
+    # Step 3: LLM reasoning/validation — synthesize final answer with graceful fallback
+    try:
+        api_key = os.getenv("OPENAI_API_KEY")
+        if api_key and not api_key.startswith("your_"):
+            llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.2)
+            reasoning_prompt = build_reasoning_prompt(query, agent_results)
+            response_text = llm.invoke(reasoning_prompt).content
+        else:
+            raise ValueError("No valid OpenAI API key")
+    except Exception:
+        is_safe = risk["data"]["is_safe_for_small_vessels"]
+        wave = marine["data"]["wave_height_m"]
+        wind = weather["data"]["wind_speed_knots"]
+        if is_safe:
+            response_text = f"SAFE TO OPERATE. Wave heights are projected at {wave}m with winds of {wind} knots. Conditions remain within safe operating thresholds for coastal craft."
+        else:
+            response_text = f"CAUTION ADVISED. Adverse marine conditions detected with wave heights reaching {wave}m and winds at {wind} knots. Small craft operations are restricted."
 
     # Step 4: Build response objects
     turn = {

@@ -9,9 +9,9 @@ export function ThreeSteps() {
   const steps = [
     {
       num: "01",
-      title: "Ask via Web, App, or Helpline",
+      title: "Ask",
       description:
-        'Submit your query in natural language or voice. "Is it safe for me to take my boat out near Mangalore tomorrow?"',
+        'Ask the marine question naturally — via text, voice, or helpline. "Is it safe for a 12-meter vessel to operate near Mangalore Port tomorrow morning?"',
       align: "left",
       visual: (
         <div className="w-full h-full flex flex-col justify-between p-6 bg-bg-sunken/90 rounded-xl border border-border">
@@ -39,9 +39,9 @@ export function ThreeSteps() {
     },
     {
       num: "02",
-      title: "ORCA Orchestrates Agents",
+      title: "Orchestrate",
       description:
-        "The system automatically dispatches specialized agents to fetch weather, analyze risk, and gather marine data simultaneously.",
+        "ORCA coordinates the specialist agents and relevant data — dispatching marine, weather, GIS, analytics, risk, and spatial agents simultaneously.",
       align: "right",
       visual: (
         <div className="w-full h-full flex flex-col justify-between p-6 bg-bg-sunken/90 rounded-xl border border-border">
@@ -69,7 +69,7 @@ export function ThreeSteps() {
             ))}
           </div>
           <div className="text-[11px] text-text-secondary flex justify-between items-center">
-            <span>Synthesis Engine: LangChain + GPT-4o</span>
+            <span>Synthesis Engine: ORCA Multi-Agent</span>
             <span className="text-primary font-mono">Latency: 1.2s</span>
           </div>
         </div>
@@ -77,9 +77,9 @@ export function ThreeSteps() {
     },
     {
       num: "03",
-      title: "Get a Validated Answer",
+      title: "Validate",
       description:
-        "Receive a clear recommendation backed by evidence. If sources conflict, the system re-checks before answering.",
+        "Evidence is cross-checked and the final recommendation is explained — with sources cited, confidence shown, and any contradictions resolved visibly.",
       align: "left",
       visual: (
         <div className="w-full h-full flex flex-col justify-between p-6 bg-bg-sunken/90 rounded-xl border border-border">
@@ -113,7 +113,7 @@ export function ThreeSteps() {
         <div className="text-center mb-24">
           <span className="text-primary text-sm font-semibold tracking-wide uppercase">Simple Workflow</span>
           <h2 className="font-heading font-bold text-4xl md:text-5xl text-foreground mt-3">
-            3 steps to get started
+            Ask. Orchestrate. Validate.
           </h2>
         </div>
 

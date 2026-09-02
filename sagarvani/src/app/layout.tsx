@@ -13,8 +13,8 @@ const unbounded = Unbounded({
 });
 
 export const metadata: Metadata = {
-  title: "Sagarvani - Multi-Agent Ocean Intelligence",
-  description: "Conversational marine decision-intelligence platform.",
+  title: "Sagarvani — Conversational Marine Decision-Intelligence Platform",
+  description: "Conversational marine decision-intelligence platform powered by ORCA multi-agent reasoning, fusing ocean, weather, and geospatial data into validated, explainable recommendations.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
